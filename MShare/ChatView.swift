@@ -16,7 +16,8 @@ struct ChatView: View {
 
     var body: some View {
         List {
-            Text("Messaging \(contacts[selectedContactIndex].name)")
+            // TODO: Messages
+            // Text("Messaging \(contacts[selectedContactIndex].name)")
         }
         .safeAreaInset(edge: .bottom) {
             TextField("", text: $message, prompt: Text("Message"))
@@ -28,11 +29,12 @@ struct ChatView: View {
                 showContactInfoPopover.toggle()
             } label: {
                 Label("Contact Info", systemImage: "info.circle")
-            }.popover(isPresented: $showContactInfoPopover, arrowEdge: .bottom) {
-                // TODO: Contact Form
-                Text("Popover")
+            }
+            .popover(isPresented: $showContactInfoPopover, arrowEdge: .bottom) {
+                ContactInfoView(contact: $contacts[selectedContactIndex])
                     .padding()
             }
+            .help("View/Edit Contact")
         }
     }
 }
