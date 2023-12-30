@@ -20,7 +20,7 @@ struct ContentView: View {
             if contacts.isEmpty {
                 WelcomeView()
             } else {
-                ChatView(contacts: $contacts, selectedContactIndex: $selectedContactIndex)
+                ChatView(contacts: $contacts, selectedContactIndex: $selectedContactIndex, messages: .constant(Message.examples()))
                     .frame(minWidth: 500, idealWidth: 800, minHeight: 500, idealHeight: 700)
             }
         }

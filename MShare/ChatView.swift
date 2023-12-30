@@ -11,6 +11,7 @@ struct ChatView: View {
     @State private var message: String = ""
     @Binding var contacts: [Contact]
     @Binding var selectedContactIndex: Int
+    @Binding var messages: [Message]
     
     @State private var showContactInfoPopover: Bool = false
 
@@ -18,11 +19,29 @@ struct ChatView: View {
         List {
             // TODO: Messages
             // Text("Messaging \(contacts[selectedContactIndex].name)")
+            ForEach($messages) { $message in
+                HStack {
+                    if $message.from.wrappedValue == .user {
+                        Spacer()
+                    }
+                    
+                    MessageView(message: $message)
+                    
+                    if $message.from.wrappedValue == .notUser {
+                        Spacer()
+                    }
+                }
+            }
+            .listRowSeparator(.hidden)
         }
         .safeAreaInset(edge: .bottom) {
             TextField("", text: $message, prompt: Text("Message"))
                 .textFieldStyle(.roundedBorder)
                 .padding()
+                .onSubmit {
+                    // TODO: Send message
+                    message = ""
+                }
         }
         .toolbar {
             Button {
