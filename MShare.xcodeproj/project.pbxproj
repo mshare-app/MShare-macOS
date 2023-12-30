@@ -16,6 +16,7 @@
 		0FDF08F42B3E36EC006F1726 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FDF08F32B3E36EC006F1726 /* WelcomeView.swift */; };
 		0FDF08F72B3E7686006F1726 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FDF08F62B3E7686006F1726 /* Contact.swift */; };
 		0FDF08FB2B3F1240006F1726 /* ContactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FDF08FA2B3F1240006F1726 /* ContactView.swift */; };
+		0FDF08FD2B3F9DF3006F1726 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FDF08FC2B3F9DF3006F1726 /* Message.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		0FDF08F32B3E36EC006F1726 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		0FDF08F62B3E7686006F1726 /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 		0FDF08FA2B3F1240006F1726 /* ContactView.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = ContactView.swift; sourceTree = "<group>"; tabWidth = 4; };
+		0FDF08FC2B3F9DF3006F1726 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				0FDF08F62B3E7686006F1726 /* Contact.swift */,
+				0FDF08FC2B3F9DF3006F1726 /* Message.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -167,6 +170,7 @@
 				0FDF08F42B3E36EC006F1726 /* WelcomeView.swift in Sources */,
 				0FDF08F22B3E30F3006F1726 /* ChatView.swift in Sources */,
 				0FDF08E32B3E2F5B006F1726 /* ContentView.swift in Sources */,
+				0FDF08FD2B3F9DF3006F1726 /* Message.swift in Sources */,
 				0FDF08E12B3E2F5B006F1726 /* MShareApp.swift in Sources */,
 				0FDF08F02B3E3008006F1726 /* SidebarView.swift in Sources */,
 			);

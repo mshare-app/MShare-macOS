@@ -7,23 +7,14 @@
 
 import Foundation
 
-struct Contact: Identifiable, Hashable {
-    var id: UUID
+struct Contact: Identifiable {
+    let id = UUID()
     var name: String
     var pubkey: String
     
     init(name: String, pubkey: String) {
-        self.id = UUID()
         self.name = name
         self.pubkey = pubkey
-    }
-    
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(id)
-    }
-    
-    static func == (lhs: Contact, rhs: Contact) -> Bool {
-        return lhs.id == rhs.id
     }
     
     static func example() -> Contact {
