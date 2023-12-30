@@ -8,29 +8,29 @@
 import SwiftUI
 
 struct SidebarView: View {
+    @Binding var contacts: [Contact]
+    @Binding var selectedContactIndex: Int
+    @State private var newContactIndex: Int = 0
     
     var body: some View {
-        List {
-            Section("Pinned") {
-                Label("Pin a chat to see it here.", systemImage: "info.circle.fill")
-            }
-            
-            Section("Chats") {
-                
+        List(selection: $selectedContactIndex) {
+            if !contacts.isEmpty {
+                Section("Chats") {
+                    ForEach(contacts.indices, id: \.self) { i in
+                        ContactView(contact: $contacts[i])
+                            .tag(i)
+                    }
+                }
             }
         }
         .toolbar {
             Button {
-                let _ = print("Add new contact.")
+                contacts.append(Contact(name: newContactIndex == 0 ? "New Contact" : "New Contact \(newContactIndex)", pubkey: "PUBKEY"))
+                newContactIndex += 1
             } label: {
                 Label("New Contact", systemImage: "person.crop.circle.badge.plus")
             }
             .help("New Contact")
         }
     }
-}
-
-#Preview {
-    SidebarView()
-        .listStyle(.sidebar)
 }

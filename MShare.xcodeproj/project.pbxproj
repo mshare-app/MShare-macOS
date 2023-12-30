@@ -14,6 +14,8 @@
 		0FDF08F02B3E3008006F1726 /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FDF08EF2B3E3008006F1726 /* SidebarView.swift */; };
 		0FDF08F22B3E30F3006F1726 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FDF08F12B3E30F3006F1726 /* ChatView.swift */; };
 		0FDF08F42B3E36EC006F1726 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FDF08F32B3E36EC006F1726 /* WelcomeView.swift */; };
+		0FDF08F72B3E7686006F1726 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FDF08F62B3E7686006F1726 /* Contact.swift */; };
+		0FDF08FB2B3F1240006F1726 /* ContactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FDF08FA2B3F1240006F1726 /* ContactView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		0FDF08EF2B3E3008006F1726 /* SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
 		0FDF08F12B3E30F3006F1726 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		0FDF08F32B3E36EC006F1726 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
+		0FDF08F62B3E7686006F1726 /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
+		0FDF08FA2B3F1240006F1726 /* ContactView.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = ContactView.swift; sourceTree = "<group>"; tabWidth = 4; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,11 +62,13 @@
 		0FDF08DF2B3E2F5B006F1726 /* MShare */ = {
 			isa = PBXGroup;
 			children = (
+				0FDF08F52B3E7679006F1726 /* Model */,
 				0FDF08E02B3E2F5B006F1726 /* MShareApp.swift */,
 				0FDF08EF2B3E3008006F1726 /* SidebarView.swift */,
 				0FDF08E22B3E2F5B006F1726 /* ContentView.swift */,
 				0FDF08F12B3E30F3006F1726 /* ChatView.swift */,
 				0FDF08F32B3E36EC006F1726 /* WelcomeView.swift */,
+				0FDF08FA2B3F1240006F1726 /* ContactView.swift */,
 				0FDF08E42B3E2F5C006F1726 /* Assets.xcassets */,
 				0FDF08E92B3E2F5C006F1726 /* MShare.entitlements */,
 				0FDF08E62B3E2F5C006F1726 /* Preview Content */,
@@ -76,6 +82,14 @@
 				0FDF08E72B3E2F5C006F1726 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		0FDF08F52B3E7679006F1726 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0FDF08F62B3E7686006F1726 /* Contact.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -148,6 +162,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0FDF08FB2B3F1240006F1726 /* ContactView.swift in Sources */,
+				0FDF08F72B3E7686006F1726 /* Contact.swift in Sources */,
 				0FDF08F42B3E36EC006F1726 /* WelcomeView.swift in Sources */,
 				0FDF08F22B3E30F3006F1726 /* ChatView.swift in Sources */,
 				0FDF08E32B3E2F5B006F1726 /* ContentView.swift in Sources */,

@@ -12,7 +12,8 @@ struct WelcomeView: View {
         Image("MShare")
             .resizable()
             .frame(width: 300, height: 300)
-        Label("Create a new contact to get started.", systemImage: "arrow.up.left")
+        
+        Label("Create a new contact to get started.", systemImage: "arrow.up.left.circle")
     }
 }
 

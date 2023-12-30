@@ -8,17 +8,20 @@
 import SwiftUI
 
 struct ContentView: View {
-    var hasContacts = false;
+    @State private var contacts: [Contact] = []
+    @State private var selectedContact: Contact?
+    @State private var selectedContactIndex: Int = 0
+
     var body: some View {
         NavigationSplitView {
-            SidebarView()
+            SidebarView(contacts: $contacts, selectedContactIndex: $selectedContactIndex)
                 .frame(minWidth: 250)
         } detail: {
-            if hasContacts {
-                ChatView()
-                    .frame(minWidth: 500, idealWidth: 800, minHeight: 500, idealHeight: 700)
-            } else {
+            if contacts.isEmpty {
                 WelcomeView()
+            } else {
+                ChatView(contacts: $contacts, selectedContactIndex: $selectedContactIndex)
+                    .frame(minWidth: 500, idealWidth: 800, minHeight: 500, idealHeight: 700)
             }
         }
     }
