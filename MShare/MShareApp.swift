@@ -9,13 +9,13 @@ import SwiftUI
 
 @main
 struct MShareApp: App {
-    var body: some Scene {
-        Window("MShare", id: "main") {
-            ContentView()
-                .onAppear {
-                    NSWindow.allowsAutomaticWindowTabbing = false
-                }
+  var body: some Scene {
+    Window("MShare", id: "main") {
+      ContentView()
+        .onAppear {
+          NSWindow.allowsAutomaticWindowTabbing = false
         }
-        .modelContainer(for: Contact.self)
     }
+    .modelContainer(for: Contact.self)
+  }
 }

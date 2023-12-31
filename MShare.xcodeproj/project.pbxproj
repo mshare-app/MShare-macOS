@@ -23,19 +23,19 @@
 
 /* Begin PBXFileReference section */
 		0FDF08DD2B3E2F5B006F1726 /* MShare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MShare.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		0FDF08E02B3E2F5B006F1726 /* MShareApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MShareApp.swift; sourceTree = "<group>"; };
-		0FDF08E22B3E2F5B006F1726 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		0FDF08E02B3E2F5B006F1726 /* MShareApp.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = MShareApp.swift; sourceTree = "<group>"; tabWidth = 2; };
+		0FDF08E22B3E2F5B006F1726 /* ContentView.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; tabWidth = 2; };
 		0FDF08E42B3E2F5C006F1726 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0FDF08E72B3E2F5C006F1726 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		0FDF08E92B3E2F5C006F1726 /* MShare.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MShare.entitlements; sourceTree = "<group>"; };
-		0FDF08EF2B3E3008006F1726 /* SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
-		0FDF08F12B3E30F3006F1726 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
-		0FDF08F32B3E36EC006F1726 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
-		0FDF08F62B3E7686006F1726 /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
-		0FDF08FA2B3F1240006F1726 /* ContactView.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = ContactView.swift; sourceTree = "<group>"; tabWidth = 4; };
-		0FDF08FC2B3F9DF3006F1726 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
-		0FDF08FE2B3FA0E1006F1726 /* ContactInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactInfoView.swift; sourceTree = "<group>"; };
-		0FDF09042B3FEACD006F1726 /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
+		0FDF08EF2B3E3008006F1726 /* SidebarView.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; tabWidth = 2; };
+		0FDF08F12B3E30F3006F1726 /* ChatView.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; tabWidth = 2; };
+		0FDF08F32B3E36EC006F1726 /* WelcomeView.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; tabWidth = 2; };
+		0FDF08F62B3E7686006F1726 /* Contact.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; tabWidth = 2; };
+		0FDF08FA2B3F1240006F1726 /* ContactView.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = ContactView.swift; sourceTree = "<group>"; tabWidth = 2; };
+		0FDF08FC2B3F9DF3006F1726 /* Message.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; tabWidth = 2; };
+		0FDF08FE2B3FA0E1006F1726 /* ContactInfoView.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = ContactInfoView.swift; sourceTree = "<group>"; tabWidth = 2; };
+		0FDF09042B3FEACD006F1726 /* MessageView.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; tabWidth = 2; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
