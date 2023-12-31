@@ -6,10 +6,12 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ChatView: View {
     @State private var message: String = ""
-    @Binding var contacts: [Contact]
+    @Environment(\.modelContext) var modelContext
+    @Query var contacts: [Contact] = []
     @Binding var selectedContactIndex: Int
     @Binding var messages: [Message]
     
@@ -18,21 +20,23 @@ struct ChatView: View {
     var body: some View {
         List {
             // TODO: Messages
-            // Text("Messaging \(contacts[selectedContactIndex].name)")
-            ForEach($messages) { $message in
-                HStack {
-                    if $message.from.wrappedValue == .user {
-                        Spacer()
-                    }
-                    
-                    MessageView(message: $message)
-                    
-                    if $message.from.wrappedValue == .notUser {
-                        Spacer()
-                    }
-                }
+            if !contacts.isEmpty && selectedContactIndex >= contacts.startIndex && selectedContactIndex <= contacts.endIndex {
+                Text("Messaging \(contacts[selectedContactIndex].name)")
             }
-            .listRowSeparator(.hidden)
+//            ForEach($messages) { $message in
+//                HStack {
+//                    if $message.from.wrappedValue == .user {
+//                        Spacer()
+//                    }
+//
+//                    MessageView(message: $message)
+//
+//                    if $message.from.wrappedValue == .notUser {
+//                        Spacer()
+//                    }
+//                }
+//            }
+//            .listRowSeparator(.hidden)
         }
         .safeAreaInset(edge: .bottom) {
             TextField("", text: $message, prompt: Text("Message"))
@@ -50,7 +54,7 @@ struct ChatView: View {
                 Label("Contact Info", systemImage: "info.circle")
             }
             .popover(isPresented: $showContactInfoPopover, arrowEdge: .bottom) {
-                ContactInfoView(contact: $contacts[selectedContactIndex])
+                ContactInfoView(contact: contacts[selectedContactIndex])
                     .padding()
             }
             .help("View/Edit Contact")

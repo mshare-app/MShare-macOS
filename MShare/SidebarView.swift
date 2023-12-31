@@ -6,9 +6,11 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct SidebarView: View {
-    @Binding var contacts: [Contact]
+    @Environment(\.modelContext) var modelContext
+    @State var contacts: [Contact]
     @Binding var selectedContactIndex: Int
     @State private var newContactIndex: Int = 0
     
@@ -17,16 +19,27 @@ struct SidebarView: View {
             if !contacts.isEmpty {
                 Section("Chats") {
                     ForEach(contacts.indices, id: \.self) { i in
-                        ContactView(contact: $contacts[i])
+                        ContactView(contact: contacts[i])
                             .tag(i)
+                            .contextMenu {
+                                Button("Delete") {
+                                    modelContext.delete(contacts[i])
+                                    contacts.remove(at: i)
+                                    if i == selectedContactIndex && selectedContactIndex != 0 {
+                                        selectedContactIndex -= 1
+                                    }
+                                }
+                            }
                     }
                 }
             }
         }
         .toolbar {
             Button {
-                contacts.append(Contact(name: newContactIndex == 0 ? "New Contact" : "New Contact \(newContactIndex)", pubkey: "PUBKEY"))
+                let newContact = Contact(name: newContactIndex == 0 ? "New Contact" : "New Contact \(newContactIndex)", pubkey: "PUBKEY")
                 newContactIndex += 1
+                modelContext.insert(newContact)
+                contacts.append(newContact)
             } label: {
                 Label("New Contact", systemImage: "person.crop.circle.badge.plus")
             }

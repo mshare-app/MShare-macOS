@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContactView: View {
-    @Binding var contact: Contact
+    var contact: Contact
 
     var body: some View {
         VStack {
@@ -31,7 +31,7 @@ struct ContactView: View {
     }
 }
 
-#Preview {
-    ContactView(contact: .constant(Contact.example())/*, selectedContactName: .constant("")*/)
-        .padding()
-}
+//#Preview {
+//    ContactView(contact: .constant(Contact.example())/*, selectedContactName: .constant("")*/)
+//        .padding()
+//}

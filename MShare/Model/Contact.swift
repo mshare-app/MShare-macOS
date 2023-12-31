@@ -6,8 +6,10 @@
 //
 
 import Foundation
+import SwiftData
 
-struct Contact: Identifiable {
+@Model
+class Contact: Identifiable {
     let id = UUID()
     var name: String
     var pubkey: String

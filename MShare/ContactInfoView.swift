@@ -6,9 +6,11 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ContactInfoView: View {
-    @Binding var contact: Contact
+//    @Environment(\.modelContext) var modelContext
+    @State var contact: Contact
 
     var body: some View {
         Form {

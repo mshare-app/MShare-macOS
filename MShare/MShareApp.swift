@@ -13,5 +13,6 @@ struct MShareApp: App {
         WindowGroup {
             ContentView()
         }
+        .modelContainer(for: Contact.self)
     }
 }
