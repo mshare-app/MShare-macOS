@@ -14,11 +14,23 @@ class Contact: Identifiable {
     var name: String
     var pubkey: String
     
+    var isPubkeyValid: Bool {
+        get {
+            for ch in pubkey {
+                if !ch.isHexDigit {
+                    return false
+                }
+            }
+
+            return pubkey.count == 91 * 2
+        }
+    }
+
     init(name: String, pubkey: String) {
         self.name = name
         self.pubkey = pubkey
     }
-    
+
     static func example() -> Contact {
         return Contact(name: "John Ritchie", pubkey: "DEADBEEF")
     }

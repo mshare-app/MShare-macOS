@@ -17,6 +17,7 @@ struct ContactInfoView: View {
             TextField("Name", text: $contact.name)
             TextField("Public Key", text: $contact.pubkey)
         }
+        .frame(width: 200)
         .textFieldStyle(.roundedBorder)
         .formStyle(.columns)
     }

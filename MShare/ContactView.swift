@@ -21,9 +21,12 @@ struct ContactView: View {
                 .padding([.leading, .trailing], 10)
                 
                 VStack(alignment: .leading) {
-                    Text(contact.name)
-                    Text(contact.pubkey)
-                        .foregroundStyle(.gray)
+                    Text(contact.name.isEmpty ? "No Name" : contact.name)
+                        .font(.headline)
+                    Text(contact.isPubkeyValid ? "0x\(contact.pubkey)" : (contact.pubkey.isEmpty ? "<EMPTY>" : contact.pubkey))
+                        .font(.caption)
+                        .fontDesign(.monospaced)
+                        .foregroundStyle(contact.isPubkeyValid ? .gray : .red)
                 }
             }
         }

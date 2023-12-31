@@ -23,11 +23,15 @@ struct SidebarView: View {
                             .tag(i)
                             .contextMenu {
                                 Button("Delete") {
+                                    print("Old \(selectedContactIndex) \(contacts.endIndex)")
                                     modelContext.delete(contacts[i])
                                     contacts.remove(at: i)
-                                    if i == selectedContactIndex && selectedContactIndex != 0 {
+                                    if i < selectedContactIndex && selectedContactIndex != 0 {
                                         selectedContactIndex -= 1
+                                    } else if selectedContactIndex == contacts.endIndex && selectedContactIndex != 0 {
+                                        selectedContactIndex = contacts.endIndex - 1
                                     }
+                                    print("New \(selectedContactIndex)")
                                 }
                             }
                     }

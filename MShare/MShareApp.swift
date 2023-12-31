@@ -10,8 +10,11 @@ import SwiftUI
 @main
 struct MShareApp: App {
     var body: some Scene {
-        WindowGroup {
+        Window("MShare", id: "main") {
             ContentView()
+                .onAppear {
+                    NSWindow.allowsAutomaticWindowTabbing = false
+                }
         }
         .modelContainer(for: Contact.self)
     }
