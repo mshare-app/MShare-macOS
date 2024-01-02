@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0FAFD6EB2B4374F9001F5BF7 /* message_client.c in Sources */ = {isa = PBXBuildFile; fileRef = 0FAFD6EA2B4374F9001F5BF7 /* message_client.c */; };
+		0FAFD6ED2B437688001F5BF7 /* MessageClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FAFD6EC2B437688001F5BF7 /* MessageClient.swift */; };
+		0FAFD6EF2B437898001F5BF7 /* Packet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FAFD6EE2B437898001F5BF7 /* Packet.swift */; };
 		0FDF08E12B3E2F5B006F1726 /* MShareApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FDF08E02B3E2F5B006F1726 /* MShareApp.swift */; };
 		0FDF08E32B3E2F5B006F1726 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FDF08E22B3E2F5B006F1726 /* ContentView.swift */; };
 		0FDF08E52B3E2F5C006F1726 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0FDF08E42B3E2F5C006F1726 /* Assets.xcassets */; };
@@ -22,6 +25,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0FAFD6E82B4374F8001F5BF7 /* MessageClientBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageClientBridge.h; sourceTree = "<group>"; };
+		0FAFD6E92B4374F9001F5BF7 /* message_client.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = message_client.h; sourceTree = "<group>"; };
+		0FAFD6EA2B4374F9001F5BF7 /* message_client.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = message_client.c; sourceTree = "<group>"; };
+		0FAFD6EC2B437688001F5BF7 /* MessageClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageClient.swift; sourceTree = "<group>"; };
+		0FAFD6EE2B437898001F5BF7 /* Packet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Packet.swift; sourceTree = "<group>"; };
 		0FDF08DD2B3E2F5B006F1726 /* MShare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MShare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FDF08E02B3E2F5B006F1726 /* MShareApp.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = MShareApp.swift; sourceTree = "<group>"; tabWidth = 2; };
 		0FDF08E22B3E2F5B006F1726 /* ContentView.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; tabWidth = 2; };
@@ -49,6 +57,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0FAFD6E72B4374E1001F5BF7 /* MessageClient */ = {
+			isa = PBXGroup;
+			children = (
+				0FAFD6E92B4374F9001F5BF7 /* message_client.h */,
+				0FAFD6EA2B4374F9001F5BF7 /* message_client.c */,
+				0FAFD6E82B4374F8001F5BF7 /* MessageClientBridge.h */,
+				0FAFD6EC2B437688001F5BF7 /* MessageClient.swift */,
+				0FAFD6EE2B437898001F5BF7 /* Packet.swift */,
+			);
+			path = MessageClient;
+			sourceTree = "<group>";
+		};
 		0FDF08D42B3E2F5B006F1726 = {
 			isa = PBXGroup;
 			children = (
@@ -68,6 +88,7 @@
 		0FDF08DF2B3E2F5B006F1726 /* MShare */ = {
 			isa = PBXGroup;
 			children = (
+				0FAFD6E72B4374E1001F5BF7 /* MessageClient */,
 				0FDF08F52B3E7679006F1726 /* Model */,
 				0FDF08E02B3E2F5B006F1726 /* MShareApp.swift */,
 				0FDF08EF2B3E3008006F1726 /* SidebarView.swift */,
@@ -133,6 +154,7 @@
 				TargetAttributes = {
 					0FDF08DC2B3E2F5B006F1726 = {
 						CreatedOnToolsVersion = 15.1;
+						LastSwiftMigration = 1510;
 					};
 				};
 			};
@@ -177,10 +199,13 @@
 				0FDF08F22B3E30F3006F1726 /* ChatView.swift in Sources */,
 				0FDF09052B3FEACD006F1726 /* MessageView.swift in Sources */,
 				0FDF08E32B3E2F5B006F1726 /* ContentView.swift in Sources */,
+				0FAFD6ED2B437688001F5BF7 /* MessageClient.swift in Sources */,
 				0FDF08FF2B3FA0E1006F1726 /* ContactInfoView.swift in Sources */,
 				0FDF08FD2B3F9DF3006F1726 /* Message.swift in Sources */,
 				0FDF08E12B3E2F5B006F1726 /* MShareApp.swift in Sources */,
+				0FAFD6EB2B4374F9001F5BF7 /* message_client.c in Sources */,
 				0FDF08F02B3E3008006F1726 /* SidebarView.swift in Sources */,
+				0FAFD6EF2B437898001F5BF7 /* Packet.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -311,6 +336,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = MShare/MShare.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -329,6 +355,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.whoisjrj.MShare;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = MShare/MessageClient/MessageClientBridge.h;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -339,6 +367,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = MShare/MShare.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -357,6 +386,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.whoisjrj.MShare;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = MShare/MessageClient/MessageClientBridge.h;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;

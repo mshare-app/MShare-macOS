@@ -9,12 +9,15 @@ import SwiftUI
 import SwiftData
 
 struct WelcomeView: View {
+  var labelString = "Create a new contact to get started."
+  var systemImage = "arrow.up.left.circle"
+
   var body: some View {
     Image("MShare")
       .resizable()
       .frame(width: 300, height: 300)
     
-    Label("Create a new contact to get started.", systemImage: "arrow.up.left.circle")
+    Label(labelString, systemImage: systemImage)
   }
 }
 

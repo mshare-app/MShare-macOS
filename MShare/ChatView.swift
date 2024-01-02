@@ -51,9 +51,18 @@ struct ChatView: View {
           if !contacts[selectedContactIndex].isPubkeyValid {
             showInvalidPubkeyAlert = true
           } else {
-            // TODO: Send message
-            messages.append(Message(from: .user, message: message))
-            message = ""
+            do {
+              let client = try MessageClient()
+              let contact = contacts[selectedContactIndex]
+              try client.sendPacket(packet: Packet(fromPubkey: contact.pubkey, toPubkey: contact.pubkey, message: message))
+              messages.append(Message(from: .user, message: message))
+              message = ""
+            } catch MessageClient.MessageClientError.startupError(let what), MessageClient.MessageClientError.sendError(let what) {
+              print(what)
+            } catch {
+              print("Unknown error.")
+              exit(-1)
+            }
           }
         }
     }
