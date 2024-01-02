@@ -5,8 +5,8 @@
 //  Created by Jithin Renji on 1/1/24.
 //
 
-#ifndef message_client_h
-#define message_client_h
+#ifndef MSMESSAGE_CLIENT_H
+#define MSMESSAGE_CLIENT_H
 
 #include <stdbool.h>
 
@@ -17,4 +17,4 @@ typedef enum send_error {
 } send_error_t;
 
 int msclient_send_packet(int sfd, const char *message);
-#endif /* message_client_h */
+#endif /* MSMESSAGE_CLIENT_H */
