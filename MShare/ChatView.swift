@@ -13,7 +13,10 @@ struct ChatView: View {
   @Environment(\.modelContext) var modelContext
   @Query var contacts: [Contact] = []
   @Binding var selectedContactIndex: Int
-  @State var messages: [Message] = Message.examples()
+  @Binding var messagePackets: [Packet]
+
+  // Test pubkey. TODO: Read from file.
+  private let userPubkey = "3059301306072a8648ce3d020106082a8648ce3d03010703420004c11ad8003fa5ca4a14517c94d79a4817b00905c74cdc7affa1347cc8476df5394d55e4870d831955471912f649c0f5e4e6a961ecdc79086c99a4c9f3f696221c"
   
   @State private var showInvalidPubkeyAlert: Bool = false
   
@@ -22,18 +25,25 @@ struct ChatView: View {
   var body: some View {
     VStack {
       List {
-        if !contacts.isEmpty && selectedContactIndex >= contacts.startIndex && selectedContactIndex <= contacts.endIndex {
-          ForEach($messages) { $message in
-            HStack {
-              if $message.from.wrappedValue == .user {
-                Spacer()
-              }
-              
-              MessageView(message: $message)
-                .frame(maxWidth: 300, alignment: $message.from.wrappedValue == .user ? .trailing : .leading)
-              
-              if $message.from.wrappedValue == .notUser {
-                Spacer()
+        if !contacts.isEmpty && selectedContactIndex >= contacts.startIndex &&
+            selectedContactIndex <= contacts.endIndex {
+          let selectedContact = contacts[selectedContactIndex]
+          ForEach($messagePackets) { $messagePacket in
+            if ($messagePacket.fromPubkey.wrappedValue == selectedContact.pubkey && $messagePacket.toPubkey.wrappedValue == userPubkey)
+                || ($messagePacket.fromPubkey.wrappedValue == userPubkey && $messagePacket.toPubkey.wrappedValue == selectedContact.pubkey) {
+              let receivedMessage = Message(from: messagePacket, userPubkey: userPubkey)
+              let _ = print(receivedMessage)
+              HStack {
+                if receivedMessage.from == .user {
+                  Spacer()
+                }
+
+                MessageView(message: receivedMessage)
+                  .frame(maxWidth: 300, alignment: receivedMessage.from == .user ? .trailing : .leading)
+
+                if receivedMessage.from == .notUser {
+                  Spacer()
+                }
               }
             }
           }
@@ -51,18 +61,11 @@ struct ChatView: View {
           if !contacts[selectedContactIndex].isPubkeyValid {
             showInvalidPubkeyAlert = true
           } else {
-            do {
-              let client = try MessageClient()
-              let contact = contacts[selectedContactIndex]
-              try client.sendPacket(packet: Packet(fromPubkey: contact.pubkey, toPubkey: contact.pubkey, message: message))
-              messages.append(Message(from: .user, message: message))
-              message = ""
-            } catch MessageClient.MessageClientError.startupError(let what), MessageClient.MessageClientError.sendError(let what) {
-              print(what)
-            } catch {
-              print("Unknown error.")
-              exit(-1)
-            }
+            let toPubkey = contacts[selectedContactIndex].pubkey
+            let newPacket = Packet(fromPubkey: userPubkey, toPubkey: toPubkey, message: message)
+            print("New packet: \(newPacket)")
+            messagePackets.append(newPacket)
+            message = ""
           }
         }
     }

@@ -7,11 +7,30 @@
 
 import Foundation
 
-struct Packet {
+struct Packet: Identifiable {
+  let id = UUID()
   var version: String = "0.1"
-  var fromPubkey: String
-  var toPubkey: String
-  var message: String
+  var fromPubkey: String = ""
+  var toPubkey: String = ""
+  var message: String = ""
+
+  init(from serialized: String = "") {
+    // Ignore underscores in the message.
+    let fields = serialized.components(separatedBy: "_")
+    if fields.count == 4 {
+      version = fields[0]
+      fromPubkey = fields[1]
+      toPubkey = fields[2]
+      message = fields[3]
+    }
+  }
+
+  init(version: String = "0.1", fromPubkey: String, toPubkey: String, message: String) {
+    self.version = version
+    self.fromPubkey = fromPubkey
+    self.toPubkey = toPubkey
+    self.message = message
+  }
 
   var isFromPubkeyValid: Bool {
     get {

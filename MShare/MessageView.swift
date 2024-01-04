@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MessageView: View {
-  @Binding var message: Message
+  var message: Message
   @State private var shouldChangeCursor = false
   @Environment(\.colorScheme) var colorScheme
   
@@ -21,9 +21,4 @@ struct MessageView: View {
       .background(message.from == .user ? .accent : (colorScheme == .dark ? .black : .gray.opacity(0.25)))
       .cornerRadius(10)
   }
-}
-
-#Preview {
-  MessageView(message: .constant(Message.example()))
-    .padding()
 }

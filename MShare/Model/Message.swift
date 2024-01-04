@@ -17,17 +17,13 @@ struct Message: Identifiable {
   var from: Sender
   var message: String
   
-  static func example() -> Message {
-    return Message(from: .user, message: "Hello, world!")
-  }
-  
-  static func examples() -> [Message] {
-    return [
-      Message(from: .user, message: "Hello!"),
-      Message(from: .notUser, message: "Hey!"),
-      Message(from: .user, message: "I'm good!"),
-      Message(from: .user, message: "Hbu?"),
-      Message(from: .notUser, message: "I'm good too!")
-    ]
+  init(from messagePacket: Packet, userPubkey: String) {
+    if messagePacket.fromPubkey == userPubkey {
+      self.from = .user
+    } else {
+      self.from = .notUser
+    }
+
+    message = messagePacket.message
   }
 }
