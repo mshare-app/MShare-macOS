@@ -9,11 +9,11 @@
 /* Begin PBXBuildFile section */
 		0F753FA82B48A76600239993 /* mshared.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0F753FA62B48A76600239993 /* mshared.cpp */; };
 		0F753FAB2B48AB5200239993 /* libcryptopp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F753FAA2B48AB5200239993 /* libcryptopp.a */; };
-		0F753FAE2B48AC1900239993 /* MessageServer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0F753FAC2B48AC1900239993 /* MessageServer.cpp */; };
-		0F753FB72B48AC2F00239993 /* Packet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0F753FB02B48AC2F00239993 /* Packet.cpp */; };
-		0F753FB82B48AC2F00239993 /* Logger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0F753FB22B48AC2F00239993 /* Logger.cpp */; };
-		0F753FB92B48AC2F00239993 /* ArgParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0F753FB32B48AC2F00239993 /* ArgParser.cpp */; };
-		0F753FBA2B48AC2F00239993 /* Crypto.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0F753FB52B48AC2F00239993 /* Crypto.cpp */; };
+		0F753FC32B48B3EE00239993 /* ArgParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0F753FBC2B48B3EE00239993 /* ArgParser.cpp */; };
+		0F753FC42B48B3EE00239993 /* Logger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0F753FBD2B48B3EE00239993 /* Logger.cpp */; };
+		0F753FC52B48B3EE00239993 /* Crypto.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0F753FBF2B48B3EE00239993 /* Crypto.cpp */; };
+		0F753FC62B48B3EE00239993 /* Packet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0F753FC22B48B3EE00239993 /* Packet.cpp */; };
+		0F753FC92B48B3FB00239993 /* MessageServer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0F753FC72B48B3FB00239993 /* MessageServer.cpp */; };
 		0FAFD6EB2B4374F9001F5BF7 /* message_client.c in Sources */ = {isa = PBXBuildFile; fileRef = 0FAFD6EA2B4374F9001F5BF7 /* message_client.c */; };
 		0FAFD6ED2B437688001F5BF7 /* MessageClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FAFD6EC2B437688001F5BF7 /* MessageClient.swift */; };
 		0FAFD6EF2B437898001F5BF7 /* Packet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FAFD6EE2B437898001F5BF7 /* Packet.swift */; };
@@ -70,16 +70,16 @@
 		0F753FA62B48A76600239993 /* mshared.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = mshared.cpp; sourceTree = "<group>"; };
 		0F753FA72B48A76600239993 /* mshared.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = mshared.hpp; sourceTree = "<group>"; };
 		0F753FAA2B48AB5200239993 /* libcryptopp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcryptopp.a; path = cryptopp/libcryptopp.a; sourceTree = "<group>"; };
-		0F753FAC2B48AC1900239993 /* MessageServer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MessageServer.cpp; path = ../../../MShareCPP/src/mshared/MessageServer.cpp; sourceTree = "<group>"; };
-		0F753FAD2B48AC1900239993 /* MessageServer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = MessageServer.hpp; path = ../../../MShareCPP/src/mshared/MessageServer.hpp; sourceTree = "<group>"; };
-		0F753FAF2B48AC2F00239993 /* Crypto.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Crypto.hpp; path = ../../../MShareCPP/src/Crypto.hpp; sourceTree = "<group>"; };
-		0F753FB02B48AC2F00239993 /* Packet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Packet.cpp; path = ../../../MShareCPP/src/Packet.cpp; sourceTree = "<group>"; };
-		0F753FB12B48AC2F00239993 /* Packet.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Packet.hpp; path = ../../../MShareCPP/src/Packet.hpp; sourceTree = "<group>"; };
-		0F753FB22B48AC2F00239993 /* Logger.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Logger.cpp; path = ../../../MShareCPP/src/Logger.cpp; sourceTree = "<group>"; };
-		0F753FB32B48AC2F00239993 /* ArgParser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ArgParser.cpp; path = ../../../MShareCPP/src/ArgParser.cpp; sourceTree = "<group>"; };
-		0F753FB42B48AC2F00239993 /* Logger.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Logger.hpp; path = ../../../MShareCPP/src/Logger.hpp; sourceTree = "<group>"; };
-		0F753FB52B48AC2F00239993 /* Crypto.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Crypto.cpp; path = ../../../MShareCPP/src/Crypto.cpp; sourceTree = "<group>"; };
-		0F753FB62B48AC2F00239993 /* ArgParser.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = ArgParser.hpp; path = ../../../MShareCPP/src/ArgParser.hpp; sourceTree = "<group>"; };
+		0F753FBB2B48B3EE00239993 /* ArgParser.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ArgParser.hpp; sourceTree = "<group>"; };
+		0F753FBC2B48B3EE00239993 /* ArgParser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ArgParser.cpp; sourceTree = "<group>"; };
+		0F753FBD2B48B3EE00239993 /* Logger.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Logger.cpp; sourceTree = "<group>"; };
+		0F753FBE2B48B3EE00239993 /* Crypto.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Crypto.hpp; sourceTree = "<group>"; };
+		0F753FBF2B48B3EE00239993 /* Crypto.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Crypto.cpp; sourceTree = "<group>"; };
+		0F753FC02B48B3EE00239993 /* Logger.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Logger.hpp; sourceTree = "<group>"; };
+		0F753FC12B48B3EE00239993 /* Packet.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Packet.hpp; sourceTree = "<group>"; };
+		0F753FC22B48B3EE00239993 /* Packet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Packet.cpp; sourceTree = "<group>"; };
+		0F753FC72B48B3FB00239993 /* MessageServer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MessageServer.cpp; sourceTree = "<group>"; };
+		0F753FC82B48B3FB00239993 /* MessageServer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MessageServer.hpp; sourceTree = "<group>"; };
 		0FAFD6E82B4374F8001F5BF7 /* MessageClientBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageClientBridge.h; sourceTree = "<group>"; };
 		0FAFD6E92B4374F9001F5BF7 /* message_client.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = message_client.h; sourceTree = "<group>"; };
 		0FAFD6EA2B4374F9001F5BF7 /* message_client.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = message_client.c; sourceTree = "<group>"; };
@@ -145,16 +145,16 @@
 		0FBAB0352B486EB30022D777 /* mshared */ = {
 			isa = PBXGroup;
 			children = (
-				0F753FB32B48AC2F00239993 /* ArgParser.cpp */,
-				0F753FB62B48AC2F00239993 /* ArgParser.hpp */,
-				0F753FB52B48AC2F00239993 /* Crypto.cpp */,
-				0F753FAF2B48AC2F00239993 /* Crypto.hpp */,
-				0F753FB22B48AC2F00239993 /* Logger.cpp */,
-				0F753FB42B48AC2F00239993 /* Logger.hpp */,
-				0F753FB02B48AC2F00239993 /* Packet.cpp */,
-				0F753FB12B48AC2F00239993 /* Packet.hpp */,
-				0F753FAC2B48AC1900239993 /* MessageServer.cpp */,
-				0F753FAD2B48AC1900239993 /* MessageServer.hpp */,
+				0F753FC72B48B3FB00239993 /* MessageServer.cpp */,
+				0F753FC82B48B3FB00239993 /* MessageServer.hpp */,
+				0F753FBC2B48B3EE00239993 /* ArgParser.cpp */,
+				0F753FBB2B48B3EE00239993 /* ArgParser.hpp */,
+				0F753FBF2B48B3EE00239993 /* Crypto.cpp */,
+				0F753FBE2B48B3EE00239993 /* Crypto.hpp */,
+				0F753FBD2B48B3EE00239993 /* Logger.cpp */,
+				0F753FC02B48B3EE00239993 /* Logger.hpp */,
+				0F753FC22B48B3EE00239993 /* Packet.cpp */,
+				0F753FC12B48B3EE00239993 /* Packet.hpp */,
 				0FBAB0362B486EB30022D777 /* main.mm */,
 				0F753FA62B48A76600239993 /* mshared.cpp */,
 				0F753FA72B48A76600239993 /* mshared.hpp */,
@@ -312,13 +312,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F753FC32B48B3EE00239993 /* ArgParser.cpp in Sources */,
 				0F753FA82B48A76600239993 /* mshared.cpp in Sources */,
-				0F753FB82B48AC2F00239993 /* Logger.cpp in Sources */,
 				0FBAB0372B486EB30022D777 /* main.mm in Sources */,
-				0F753FB92B48AC2F00239993 /* ArgParser.cpp in Sources */,
-				0F753FBA2B48AC2F00239993 /* Crypto.cpp in Sources */,
-				0F753FAE2B48AC1900239993 /* MessageServer.cpp in Sources */,
-				0F753FB72B48AC2F00239993 /* Packet.cpp in Sources */,
+				0F753FC62B48B3EE00239993 /* Packet.cpp in Sources */,
+				0F753FC92B48B3FB00239993 /* MessageServer.cpp in Sources */,
+				0F753FC52B48B3EE00239993 /* Crypto.cpp in Sources */,
+				0F753FC42B48B3EE00239993 /* Logger.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
