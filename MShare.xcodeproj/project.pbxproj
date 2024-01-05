@@ -7,9 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F753FA82B48A76600239993 /* mshared.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0F753FA62B48A76600239993 /* mshared.cpp */; };
+		0F753FAB2B48AB5200239993 /* libcryptopp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F753FAA2B48AB5200239993 /* libcryptopp.a */; };
+		0F753FAE2B48AC1900239993 /* MessageServer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0F753FAC2B48AC1900239993 /* MessageServer.cpp */; };
+		0F753FB72B48AC2F00239993 /* Packet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0F753FB02B48AC2F00239993 /* Packet.cpp */; };
+		0F753FB82B48AC2F00239993 /* Logger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0F753FB22B48AC2F00239993 /* Logger.cpp */; };
+		0F753FB92B48AC2F00239993 /* ArgParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0F753FB32B48AC2F00239993 /* ArgParser.cpp */; };
+		0F753FBA2B48AC2F00239993 /* Crypto.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0F753FB52B48AC2F00239993 /* Crypto.cpp */; };
 		0FAFD6EB2B4374F9001F5BF7 /* message_client.c in Sources */ = {isa = PBXBuildFile; fileRef = 0FAFD6EA2B4374F9001F5BF7 /* message_client.c */; };
 		0FAFD6ED2B437688001F5BF7 /* MessageClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FAFD6EC2B437688001F5BF7 /* MessageClient.swift */; };
 		0FAFD6EF2B437898001F5BF7 /* Packet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FAFD6EE2B437898001F5BF7 /* Packet.swift */; };
+		0FBAB0372B486EB30022D777 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0FBAB0362B486EB30022D777 /* main.mm */; };
+		0FBAB03E2B486F5F0022D777 /* mshared in Embed mshared */ = {isa = PBXBuildFile; fileRef = 0FBAB0342B486EB30022D777 /* mshared */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		0FDF08E12B3E2F5B006F1726 /* MShareApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FDF08E02B3E2F5B006F1726 /* MShareApp.swift */; };
 		0FDF08E32B3E2F5B006F1726 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FDF08E22B3E2F5B006F1726 /* ContentView.swift */; };
 		0FDF08E52B3E2F5C006F1726 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0FDF08E42B3E2F5C006F1726 /* Assets.xcassets */; };
@@ -24,12 +33,60 @@
 		0FDF09052B3FEACD006F1726 /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FDF09042B3FEACD006F1726 /* MessageView.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		0FBAB03B2B486F320022D777 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0FDF08D52B3E2F5B006F1726 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0FBAB0332B486EB30022D777;
+			remoteInfo = mshared;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		0FBAB0322B486EB30022D777 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		0FBAB03D2B486F400022D777 /* Embed mshared */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 6;
+			files = (
+				0FBAB03E2B486F5F0022D777 /* mshared in Embed mshared */,
+			);
+			name = "Embed mshared";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		0F753FA62B48A76600239993 /* mshared.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = mshared.cpp; sourceTree = "<group>"; };
+		0F753FA72B48A76600239993 /* mshared.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = mshared.hpp; sourceTree = "<group>"; };
+		0F753FAA2B48AB5200239993 /* libcryptopp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcryptopp.a; path = cryptopp/libcryptopp.a; sourceTree = "<group>"; };
+		0F753FAC2B48AC1900239993 /* MessageServer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MessageServer.cpp; path = ../../../MShareCPP/src/mshared/MessageServer.cpp; sourceTree = "<group>"; };
+		0F753FAD2B48AC1900239993 /* MessageServer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = MessageServer.hpp; path = ../../../MShareCPP/src/mshared/MessageServer.hpp; sourceTree = "<group>"; };
+		0F753FAF2B48AC2F00239993 /* Crypto.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Crypto.hpp; path = ../../../MShareCPP/src/Crypto.hpp; sourceTree = "<group>"; };
+		0F753FB02B48AC2F00239993 /* Packet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Packet.cpp; path = ../../../MShareCPP/src/Packet.cpp; sourceTree = "<group>"; };
+		0F753FB12B48AC2F00239993 /* Packet.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Packet.hpp; path = ../../../MShareCPP/src/Packet.hpp; sourceTree = "<group>"; };
+		0F753FB22B48AC2F00239993 /* Logger.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Logger.cpp; path = ../../../MShareCPP/src/Logger.cpp; sourceTree = "<group>"; };
+		0F753FB32B48AC2F00239993 /* ArgParser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ArgParser.cpp; path = ../../../MShareCPP/src/ArgParser.cpp; sourceTree = "<group>"; };
+		0F753FB42B48AC2F00239993 /* Logger.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Logger.hpp; path = ../../../MShareCPP/src/Logger.hpp; sourceTree = "<group>"; };
+		0F753FB52B48AC2F00239993 /* Crypto.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Crypto.cpp; path = ../../../MShareCPP/src/Crypto.cpp; sourceTree = "<group>"; };
+		0F753FB62B48AC2F00239993 /* ArgParser.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = ArgParser.hpp; path = ../../../MShareCPP/src/ArgParser.hpp; sourceTree = "<group>"; };
 		0FAFD6E82B4374F8001F5BF7 /* MessageClientBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageClientBridge.h; sourceTree = "<group>"; };
 		0FAFD6E92B4374F9001F5BF7 /* message_client.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = message_client.h; sourceTree = "<group>"; };
 		0FAFD6EA2B4374F9001F5BF7 /* message_client.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = message_client.c; sourceTree = "<group>"; };
 		0FAFD6EC2B437688001F5BF7 /* MessageClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageClient.swift; sourceTree = "<group>"; };
 		0FAFD6EE2B437898001F5BF7 /* Packet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Packet.swift; sourceTree = "<group>"; };
+		0FBAB0342B486EB30022D777 /* mshared */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = mshared; sourceTree = BUILT_PRODUCTS_DIR; };
+		0FBAB0362B486EB30022D777 /* main.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
 		0FDF08DD2B3E2F5B006F1726 /* MShare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MShare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FDF08E02B3E2F5B006F1726 /* MShareApp.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = MShareApp.swift; sourceTree = "<group>"; tabWidth = 2; };
 		0FDF08E22B3E2F5B006F1726 /* ContentView.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; tabWidth = 2; };
@@ -47,6 +104,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		0FBAB0312B486EB30022D777 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0F753FAB2B48AB5200239993 /* libcryptopp.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		0FDF08DA2B3E2F5B006F1726 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -57,6 +122,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0F753FA92B48AB5200239993 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0F753FAA2B48AB5200239993 /* libcryptopp.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		0FAFD6E72B4374E1001F5BF7 /* MessageClient */ = {
 			isa = PBXGroup;
 			children = (
@@ -69,11 +142,33 @@
 			path = MessageClient;
 			sourceTree = "<group>";
 		};
+		0FBAB0352B486EB30022D777 /* mshared */ = {
+			isa = PBXGroup;
+			children = (
+				0F753FB32B48AC2F00239993 /* ArgParser.cpp */,
+				0F753FB62B48AC2F00239993 /* ArgParser.hpp */,
+				0F753FB52B48AC2F00239993 /* Crypto.cpp */,
+				0F753FAF2B48AC2F00239993 /* Crypto.hpp */,
+				0F753FB22B48AC2F00239993 /* Logger.cpp */,
+				0F753FB42B48AC2F00239993 /* Logger.hpp */,
+				0F753FB02B48AC2F00239993 /* Packet.cpp */,
+				0F753FB12B48AC2F00239993 /* Packet.hpp */,
+				0F753FAC2B48AC1900239993 /* MessageServer.cpp */,
+				0F753FAD2B48AC1900239993 /* MessageServer.hpp */,
+				0FBAB0362B486EB30022D777 /* main.mm */,
+				0F753FA62B48A76600239993 /* mshared.cpp */,
+				0F753FA72B48A76600239993 /* mshared.hpp */,
+			);
+			path = mshared;
+			sourceTree = "<group>";
+		};
 		0FDF08D42B3E2F5B006F1726 = {
 			isa = PBXGroup;
 			children = (
 				0FDF08DF2B3E2F5B006F1726 /* MShare */,
+				0FBAB0352B486EB30022D777 /* mshared */,
 				0FDF08DE2B3E2F5B006F1726 /* Products */,
+				0F753FA92B48AB5200239993 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -81,6 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				0FDF08DD2B3E2F5B006F1726 /* MShare.app */,
+				0FBAB0342B486EB30022D777 /* mshared */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -125,6 +221,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		0FBAB0332B486EB30022D777 /* mshared */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0FBAB0382B486EB30022D777 /* Build configuration list for PBXNativeTarget "mshared" */;
+			buildPhases = (
+				0FBAB0302B486EB30022D777 /* Sources */,
+				0FBAB0312B486EB30022D777 /* Frameworks */,
+				0FBAB0322B486EB30022D777 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = mshared;
+			productName = mshared;
+			productReference = 0FBAB0342B486EB30022D777 /* mshared */;
+			productType = "com.apple.product-type.tool";
+		};
 		0FDF08DC2B3E2F5B006F1726 /* MShare */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0FDF08EC2B3E2F5C006F1726 /* Build configuration list for PBXNativeTarget "MShare" */;
@@ -132,10 +245,12 @@
 				0FDF08D92B3E2F5B006F1726 /* Sources */,
 				0FDF08DA2B3E2F5B006F1726 /* Frameworks */,
 				0FDF08DB2B3E2F5B006F1726 /* Resources */,
+				0FBAB03D2B486F400022D777 /* Embed mshared */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				0FBAB03C2B486F320022D777 /* PBXTargetDependency */,
 			);
 			name = MShare;
 			productName = MShare;
@@ -152,6 +267,9 @@
 				LastSwiftUpdateCheck = 1510;
 				LastUpgradeCheck = 1510;
 				TargetAttributes = {
+					0FBAB0332B486EB30022D777 = {
+						CreatedOnToolsVersion = 15.1;
+					};
 					0FDF08DC2B3E2F5B006F1726 = {
 						CreatedOnToolsVersion = 15.1;
 						LastSwiftMigration = 1510;
@@ -172,6 +290,7 @@
 			projectRoot = "";
 			targets = (
 				0FDF08DC2B3E2F5B006F1726 /* MShare */,
+				0FBAB0332B486EB30022D777 /* mshared */,
 			);
 		};
 /* End PBXProject section */
@@ -189,6 +308,20 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		0FBAB0302B486EB30022D777 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0F753FA82B48A76600239993 /* mshared.cpp in Sources */,
+				0F753FB82B48AC2F00239993 /* Logger.cpp in Sources */,
+				0FBAB0372B486EB30022D777 /* main.mm in Sources */,
+				0F753FB92B48AC2F00239993 /* ArgParser.cpp in Sources */,
+				0F753FBA2B48AC2F00239993 /* Crypto.cpp in Sources */,
+				0F753FAE2B48AC1900239993 /* MessageServer.cpp in Sources */,
+				0F753FB72B48AC2F00239993 /* Packet.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		0FDF08D92B3E2F5B006F1726 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -211,7 +344,53 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		0FBAB03C2B486F320022D777 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0FBAB0332B486EB30022D777 /* mshared */;
+			targetProxy = 0FBAB03B2B486F320022D777 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		0FBAB0392B486EB30022D777 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 928AS699FZ;
+				ENABLE_HARDENED_RUNTIME = YES;
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/";
+				LIBRARY_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/cryptopp/**",
+					"$(PROJECT_DIR)/cryptopp",
+				);
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=macosx*]" = com.whoisjrj.MShare.mshared;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SYSTEM_HEADER_SEARCH_PATHS = "";
+			};
+			name = Debug;
+		};
+		0FBAB03A2B486EB30022D777 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 928AS699FZ;
+				ENABLE_HARDENED_RUNTIME = YES;
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/";
+				LIBRARY_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/cryptopp/**",
+					"$(PROJECT_DIR)/cryptopp",
+				);
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=macosx*]" = com.whoisjrj.MShare.mshared;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SYSTEM_HEADER_SEARCH_PATHS = "";
+			};
+			name = Release;
+		};
 		0FDF08EA2B3E2F5C006F1726 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -394,6 +573,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		0FBAB0382B486EB30022D777 /* Build configuration list for PBXNativeTarget "mshared" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0FBAB0392B486EB30022D777 /* Debug */,
+				0FBAB03A2B486EB30022D777 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		0FDF08D82B3E2F5B006F1726 /* Build configuration list for PBXProject "MShare" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

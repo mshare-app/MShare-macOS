@@ -14,6 +14,24 @@ struct MShareApp: App {
       ContentView()
         .onAppear {
           NSWindow.allowsAutomaticWindowTabbing = false
+
+          let msharedProcess = Process()
+          let helper = Bundle.main.path(forAuxiliaryExecutable: "mshared")
+          msharedProcess.executableURL = URL(fileURLWithPath: helper!)
+
+          do {
+            try msharedProcess.run()
+            print("mshared is running. \(msharedProcess.executableURL)")
+          } catch {
+            print("Failed to run mshared: \(error.localizedDescription)")
+            fatalError()
+          }
+
+          for application in NSWorkspace.shared.runningApplications {
+            if application.executableURL?.absoluteString == "mshared" {
+              print("Yes!: \(String(describing: application.executableURL))")
+            }
+          }
         }
     }
     .commands {
