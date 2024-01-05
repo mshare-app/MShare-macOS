@@ -14,10 +14,10 @@ struct ChatView: View {
   @Query var contacts: [Contact] = []
   @Binding var selectedContactIndex: Int
   @Binding var messagePackets: [Packet]
+  @State var client: MessageClient
 
-  // Test pubkey. TODO: Read from file.
-  private let userPubkey = "3059301306072a8648ce3d020106082a8648ce3d03010703420004c11ad8003fa5ca4a14517c94d79a4817b00905c74cdc7affa1347cc8476df5394d55e4870d831955471912f649c0f5e4e6a961ecdc79086c99a4c9f3f696221c"
-  
+  @Binding var userPubkey: String
+
   @State private var showInvalidPubkeyAlert: Bool = false
   
   @State private var showContactInfoPopover: Bool = false
@@ -63,7 +63,15 @@ struct ChatView: View {
           } else {
             let toPubkey = contacts[selectedContactIndex].pubkey
             let newPacket = Packet(fromPubkey: userPubkey, toPubkey: toPubkey, message: message)
-            print("New packet: \(newPacket)")
+
+            do {
+              try client.sendPacket(packet: newPacket)
+            } catch MessageClient.MessageClientError.sendError(let what) {
+              print(what)
+            } catch {
+              print("Unexpected error: \(error)")
+            }
+
             messagePackets.append(newPacket)
             message = ""
           }

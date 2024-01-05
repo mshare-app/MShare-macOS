@@ -13,7 +13,8 @@ struct ContentView: View {
   @State private var selectedContactIndex: Int = 0
   @State private var messagePackets: [Packet] = []
   @ObservedObject private var client: MessageClient = MessageClient()
-  
+  @State private var userPubkey = ""
+
   var body: some View {
     NavigationSplitView {
       SidebarView(contacts: contacts, selectedContactIndex: $selectedContactIndex)
@@ -22,8 +23,27 @@ struct ContentView: View {
       if contacts.isEmpty {
         WelcomeView()
       } else {
-        ChatView(selectedContactIndex: $selectedContactIndex, messagePackets: $messagePackets)
+        ChatView(selectedContactIndex: $selectedContactIndex, messagePackets: $messagePackets, client: client,
+                 userPubkey: $userPubkey)
           .frame(minWidth: 500, idealWidth: 800, minHeight: 500, idealHeight: 700)
+      }
+    }
+    .onAppear {
+      if let applicationSupport = FileManager.default.urls(for: .applicationSupportDirectory,
+                                                           in: .userDomainMask).first {
+        let pubkeyFileURL = applicationSupport.appendingPathComponent("MShare/pubkey")
+        print(pubkeyFileURL)
+        do {
+          let contents = try Data(contentsOf: pubkeyFileURL)
+          userPubkey = contents.map {
+            String(format: "%02hhx", $0)
+          }
+          .joined()
+
+          print(userPubkey)
+        } catch {
+          print("\(error)")
+        }
       }
     }
     .onReceive(client.listener.$messageReceived) { packetData in
