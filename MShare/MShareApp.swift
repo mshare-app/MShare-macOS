@@ -21,7 +21,6 @@ struct MShareApp: App {
 
           do {
             try msharedProcess.run()
-            print("mshared is running. \(msharedProcess.executableURL)")
           } catch {
             print("Failed to run mshared: \(error.localizedDescription)")
             fatalError()

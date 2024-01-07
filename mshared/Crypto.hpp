@@ -22,6 +22,7 @@ public:
   std::string encrypt(std::string input);
   std::string decrypt(std::string input);
   std::string get_pubkey_hash();
+  fs::path get_msdir();
 
 private:
   using Decyptor = CryptoPP::ECIES<CryptoPP::ECP>::Decryptor;

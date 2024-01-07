@@ -2,6 +2,8 @@
 #include "Packet.hpp"
 #include "Logger.hpp"
 
+#include <fstream>
+
 #include <unistd.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
@@ -17,6 +19,16 @@ const char* ServerStartupError::what() const noexcept {
 }
 
 MessageServer::MessageServer(CryptoContext& cctx): cctx_{cctx}, port_{3000} {
+  if (fs::exists(cctx_.get_msdir())) {
+    std::ifstream known_peers_file(cctx_.get_msdir() / "known_peers.txt");
+    std::string line;
+    while (std::getline(known_peers_file, line)) {
+      known_peers_.push_back(line);
+    }
+  } else {
+    warn() << "No known peers.\n";
+  }
+
   status() << "Starting message server...\n";
   sfd_ = socket(AF_INET, SOCK_DGRAM, 0);
   if (sfd_ == -1) {
@@ -63,14 +75,43 @@ void MessageServer::main_loop() {
     sbuf.resize(std::strlen(buf.data()));
 
     MShare::Packet packet(sbuf);
-    // if (packet.pubkey_hash != cctx_.get_pubkey_hash()) {
-    //   // TODO: Forward.
-    //   continue;
-    // }
+
+    // TODO: Encrypt before forwarding.
+    forward(sbuf);
 
     status() << "New message from " << inet_ntoa(client.sin_addr) << ": " << packet.msg << '\n';
     std::fill(buf.begin(), buf.end(), 0);
     sbuf.clear();
+  }
+}
+
+void MessageServer::forward(std::string &sbuf) {
+  bool sent_to_at_least_one = false;
+  sockaddr_in saddr = {
+    .sin_family = AF_INET,
+    .sin_port = htons(port_)
+  };
+
+  for (std::string &peer : known_peers_) {
+    if (inet_pton(AF_INET, peer.c_str(), &saddr.sin_addr) != 1) {
+      error() << '"' << peer << '"' << " could not be parsed.\n";
+      continue;
+    }
+
+    // TODO: Do not forward to localhost if it is somehow a known peer.
+    ssize_t ret = sendto(sfd_, sbuf.c_str(), sbuf.size(), 0, (struct sockaddr *) &saddr, sizeof(saddr));
+    if (ret == -1 || ret != sbuf.size()) {
+      error() << peer << ": Full send failed (" << ret << ").\n";
+      continue;
+    }
+
+    sent_to_at_least_one = true;
+  }
+
+  if (sent_to_at_least_one) {
+    status() << "Message forwarded.\n";
+  } else {
+    warn() << "Please check " << cctx_.get_msdir() / "known_peers.txt" << '\n';
   }
 }
 

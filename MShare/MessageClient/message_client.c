@@ -19,7 +19,6 @@
 
 int msclient_send_packet(int sfd, const char *serialized) {
   size_t msg_len = strlen(serialized);
-  printf("Got msg_len: %ld\n", msg_len);
   if (msg_len >= 4096) {
     return MSG_TOO_LONG_ERROR;
   }

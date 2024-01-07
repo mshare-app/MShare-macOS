@@ -5,6 +5,7 @@
 
 #include <string>
 #include <stdexcept>
+
 #include <stdint.h>
 
 namespace MShare {
@@ -27,8 +28,10 @@ private:
   uint16_t port_;
   int sfd_;
   CryptoContext& cctx_;
+  std::vector<std::string> known_peers_;
 
   void main_loop();
+  void forward(std::string &sbuf);
 };
 
 } // namespace MShare

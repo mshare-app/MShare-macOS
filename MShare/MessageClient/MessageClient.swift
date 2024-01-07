@@ -132,7 +132,5 @@ class MessageClient: ObservableObject {
     if errcode != 0 {
       throw MessageClientError.sendError(what: "Send failed. Error code: \(errcode)")
     }
-
-    print("Sent ser: \(serialized)")
   }
 }

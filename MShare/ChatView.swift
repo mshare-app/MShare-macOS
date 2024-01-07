@@ -32,7 +32,6 @@ struct ChatView: View {
             if ($messagePacket.fromPubkey.wrappedValue == selectedContact.pubkey && $messagePacket.toPubkey.wrappedValue == userPubkey)
                 || ($messagePacket.fromPubkey.wrappedValue == userPubkey && $messagePacket.toPubkey.wrappedValue == selectedContact.pubkey) {
               let receivedMessage = Message(from: messagePacket, userPubkey: userPubkey)
-              let _ = print(receivedMessage)
               HStack {
                 if receivedMessage.from == .user {
                   Spacer()

@@ -11,12 +11,6 @@
 #include <iostream>
 #include <filesystem>
 
-#ifdef __APPLE__
-  #include <stdexcept>
-  #include <sysdir.h>
-  #include <glob.h>
-#endif
-
 namespace MShare {
 
 CryptoContext::CryptoContext(std::string &msdir): msdir_(msdir) {
@@ -78,6 +72,7 @@ std::string CryptoContext::decrypt(std::string input) {
   return plaintext;
 }
 
+// TODO: Fix incorrect result.
 std::string CryptoContext::get_pubkey_hash() {
   const CryptoPP::ECPPoint& point = encryptor_.GetKey().GetPublicElement();
 
@@ -92,6 +87,10 @@ std::string CryptoContext::get_pubkey_hash() {
   hasher.Final((CryptoPP::byte*) &hash[0]);
 
   return hash;
+}
+
+fs::path CryptoContext::get_msdir() {
+  return msdir_;
 }
 
 void CryptoContext::save_keys() {
