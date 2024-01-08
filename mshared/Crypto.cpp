@@ -42,20 +42,20 @@ CryptoContext::CryptoContext(std::string &msdir): msdir_(msdir) {
   status() << "Done.\n";
 }
 
-std::string CryptoContext::encrypt(std::string input) {
-  std::string ciphertext;
-  CryptoPP::StringSource ss(
-    input,
-    true,
-    new CryptoPP::PK_EncryptorFilter(
-      prng_,
-      encryptor_,
-      new CryptoPP::StringSink(ciphertext)
-    )
-  );
-
-  return ciphertext;
-}
+//std::string CryptoContext::encrypt(std::string input) {
+//  std::string ciphertext;
+//  CryptoPP::StringSource ss(
+//    input,
+//    true,
+//    new CryptoPP::PK_EncryptorFilter(
+//      prng_,
+//      encryptor_,
+//      new CryptoPP::StringSink(ciphertext)
+//    )
+//  );
+//
+//  return ciphertext;
+//}
 
 std::string CryptoContext::decrypt(std::string input) {
   std::string plaintext;

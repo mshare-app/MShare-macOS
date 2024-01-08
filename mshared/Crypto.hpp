@@ -15,19 +15,20 @@ namespace MShare
 
 namespace fs = std::filesystem;
 
+using Decyptor = CryptoPP::ECIES<CryptoPP::ECP>::Decryptor;
+using Encryptor = CryptoPP::ECIES<CryptoPP::ECP>::Encryptor;
+
 class CryptoContext {
 public:
   CryptoContext(std::string &msdir);
 
-  std::string encrypt(std::string input);
+//  std::string encrypt(std::string input);
   std::string decrypt(std::string input);
 //  std::string get_pubkey_hash();
   std::string get_hex_pubkey() const;
   fs::path get_msdir() const;
 
 private:
-  using Decyptor = CryptoPP::ECIES<CryptoPP::ECP>::Decryptor;
-  using Encryptor = CryptoPP::ECIES<CryptoPP::ECP>::Encryptor;
 
   fs::path msdir_;
 

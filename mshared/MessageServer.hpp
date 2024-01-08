@@ -2,6 +2,7 @@
 #define MSMESSAGE_SERVER_HPP
 
 #include "Crypto.hpp"
+#include "Packet.hpp"
 
 #include <string>
 #include <stdexcept>
@@ -31,7 +32,8 @@ private:
   std::vector<std::string> known_peers_;
 
   void main_loop();
-  void forward(std::string &sbuf);
+  void encrypt_packet(Packet &packet);
+  void forward(Packet &packet);
 };
 
 } // namespace MShare

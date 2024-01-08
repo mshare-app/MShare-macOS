@@ -2,6 +2,8 @@
 #include "Packet.hpp"
 #include "Logger.hpp"
 
+#include "cryptopp/hex.h"
+
 #include <fstream>
 
 #include <unistd.h>
@@ -19,6 +21,7 @@ const char* ServerStartupError::what() const noexcept {
 }
 
 MessageServer::MessageServer(CryptoContext& cctx): cctx_{cctx}, port_{3000} {
+  /* TODO: Switch to TCP. */
   if (fs::exists(cctx_.get_msdir())) {
     std::ifstream known_peers_file(cctx_.get_msdir() / "known_peers.txt");
     std::string line;
@@ -77,19 +80,55 @@ void MessageServer::main_loop() {
     MShare::Packet packet(sbuf);
 
     if (packet.from_pubkey == cctx_.get_hex_pubkey()) {
-      // TODO: Encrypt before forwarding if this packet was sent from the client.
-      warn() << "This message needs to be encrypted before being sent.\n";
+      try {
+        encrypt_packet(packet);
+      } catch (CryptoPP::InvalidCiphertext &e) {
+        warn() << "Skipping invalid packet.\n";
+        continue;
+      }
     }
 
-    forward(sbuf);
+    forward(packet);
+    status() << "Packet ciphertext hash: " << to_hex(sha3_256(packet.msg)) << " " << packet.serialize().size() << '\n';
 
-    status() << "New message from " << inet_ntoa(client.sin_addr) << ": " << packet.msg << '\n';
+//    status() << "New message from " << inet_ntoa(client.sin_addr) << ": " << packet.msg << '\n';
     std::fill(buf.begin(), buf.end(), 0);
     sbuf.clear();
   }
 }
 
-void MessageServer::forward(std::string &sbuf) {
+void MessageServer::encrypt_packet(Packet &packet) {
+  std::string decoded_key;
+  CryptoPP::StringSource ss(
+    packet.to_pubkey,
+    packet.to_pubkey.size(),
+    new CryptoPP::HexDecoder(
+      new CryptoPP::StringSink(decoded_key)
+    )
+  );
+
+  CryptoPP::AutoSeededRandomPool prng;
+
+  Encryptor enc;
+  CryptoPP::StringSource pubkey_ss(decoded_key, decoded_key.size());
+  enc.AccessPublicKey().Load(pubkey_ss);
+  enc.GetPublicKey().ThrowIfInvalid(prng, 3);
+
+  std::string ciphertext;
+  CryptoPP::StringSource enc_ss(
+    packet.msg,
+    true,
+    new CryptoPP::PK_EncryptorFilter(
+      prng,
+      enc,
+      new CryptoPP::StringSink(ciphertext)
+    )
+  );
+
+  packet.msg = ciphertext;
+}
+
+void MessageServer::forward(Packet &packet) {
   bool sent_to_at_least_one = false;
   sockaddr_in saddr = {
     .sin_family = AF_INET,
@@ -103,11 +142,14 @@ void MessageServer::forward(std::string &sbuf) {
     }
 
     // TODO: Do not forward to localhost if it is somehow a known peer.
+    std::string sbuf = packet.serialize();
     ssize_t ret = sendto(sfd_, sbuf.c_str(), sbuf.size(), 0, (struct sockaddr *) &saddr, sizeof(saddr));
     if (ret == -1 || ret != sbuf.size()) {
       error() << peer << ": Full send failed (" << ret << ").\n";
       continue;
     }
+
+    status() << "Send succeeded! " << ret << '\n';
 
     sent_to_at_least_one = true;
   }
