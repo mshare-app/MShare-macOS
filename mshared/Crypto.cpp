@@ -73,23 +73,31 @@ std::string CryptoContext::decrypt(std::string input) {
 }
 
 // TODO: Fix incorrect result.
-std::string CryptoContext::get_pubkey_hash() {
-  const CryptoPP::ECPPoint& point = encryptor_.GetKey().GetPublicElement();
+//std::string CryptoContext::get_pubkey_hash() {
+//  const CryptoPP::ECPPoint& point = encryptor_.GetKey().GetPublicElement();
+//
+//  std::string hash;
+//  CryptoPP::SHA3_256 hasher;
+//
+//  std::vector<CryptoPP::byte> x_bytes(point.x.ByteCount());
+//  std::vector<CryptoPP::byte> y_bytes(point.y.ByteCount());
+//  hasher.Update(x_bytes.data() , x_bytes.size());
+//  hasher.Update(y_bytes.data(), y_bytes.size());
+//  hash.resize(hasher.DigestSize());
+//  hasher.Final((CryptoPP::byte*) &hash[0]);
+//
+//  return hash;
+//}
 
-  std::string hash;
-  CryptoPP::SHA3_256 hasher;
+std::string CryptoContext::get_hex_pubkey() const {
+  std::string encoded;
+  CryptoPP::HexEncoder encoder(new CryptoPP::StringSink(encoded), false);
+  encryptor_.GetPublicKey().Save(encoder);
 
-  std::vector<CryptoPP::byte> x_bytes(point.x.ByteCount());
-  std::vector<CryptoPP::byte> y_bytes(point.y.ByteCount());
-  hasher.Update(x_bytes.data() , x_bytes.size());
-  hasher.Update(y_bytes.data(), y_bytes.size());
-  hash.resize(hasher.DigestSize());
-  hasher.Final((CryptoPP::byte*) &hash[0]);
-
-  return hash;
+  return encoded;
 }
 
-fs::path CryptoContext::get_msdir() {
+fs::path CryptoContext::get_msdir() const {
   return msdir_;
 }
 

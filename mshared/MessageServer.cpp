@@ -76,7 +76,11 @@ void MessageServer::main_loop() {
 
     MShare::Packet packet(sbuf);
 
-    // TODO: Encrypt before forwarding.
+    if (packet.from_pubkey == cctx_.get_hex_pubkey()) {
+      // TODO: Encrypt before forwarding if this packet was sent from the client.
+      warn() << "This message needs to be encrypted before being sent.\n";
+    }
+
     forward(sbuf);
 
     status() << "New message from " << inet_ntoa(client.sin_addr) << ": " << packet.msg << '\n';
