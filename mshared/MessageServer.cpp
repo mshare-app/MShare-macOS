@@ -116,7 +116,9 @@ void MessageServer::main_loop() {
           )
         );
 
-        packet.msg = decoded_ciphertext;
+        // TODO: Catch invalid ciphertext exception.
+        packet.msg = cctx_.decrypt(decoded_ciphertext);
+        status() << "Message: " << packet.msg << '\n';
       }
 
       forward(packet);
@@ -205,7 +207,8 @@ void MessageServer::forward(Packet &packet) {
   if (sent_to_at_least_one) {
     status() << "Message forwarded.\n";
   } else {
-    warn() << "Please check " << cctx_.get_msdir() / "known_peers.txt (invalid peers/all peers offline)." << '\n';
+    warn() << "Please check " << cctx_.get_msdir() / "known_peers.txt"
+           << " (invalid peers/all peers offline)" << '\n';
   }
 }
 
