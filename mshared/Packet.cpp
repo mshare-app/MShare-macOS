@@ -1,6 +1,8 @@
 #include "Logger.hpp"
 #include "Packet.hpp"
 
+#include "cryptopp/hex.h"
+
 namespace MShare {
 
 PacketizationError::PacketizationError(std::string what_str): what_str_(what_str) { }
@@ -33,7 +35,17 @@ Packet::Packet(std::string serialized) {
 Packet::Packet(): version("0.1") { }
 
 std::string Packet::serialize() {
-  return version + "_" + from_pubkey + "_" + to_pubkey + "_" + msg;
+  std::string encoded_msg;
+  CryptoPP::StringSource ss(
+    msg,
+    msg.size(),
+    new CryptoPP::HexEncoder(
+      new CryptoPP::StringSink(encoded_msg),
+      false
+    )
+  );
+
+  return version + "_" + from_pubkey + "_" + to_pubkey + "_" + encoded_msg;
 }
 
 } // namespace MShare

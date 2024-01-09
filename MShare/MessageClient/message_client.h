@@ -11,10 +11,12 @@
 #include <stdbool.h>
 
 typedef enum send_error {
-  MSG_TOO_LONG_ERROR = 1,
+  SOCKET_CREATION_ERROR = 1,
+  MSG_TOO_LONG_ERROR,
   ADDR_PARSE_ERROR,
+  CONN_FAILED_ERROR,
   PARTIAL_SEND_ERROR
 } send_error_t;
 
-int msclient_send_packet(int sfd, const char *message);
+int msclient_send_packet(const char *message);
 #endif /* MSMESSAGE_CLIENT_H */

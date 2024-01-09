@@ -5,6 +5,7 @@
 #include "cryptopp/hex.h"
 
 #include <fstream>
+#include <thread>
 
 #include <unistd.h>
 #include <sys/socket.h>
@@ -33,7 +34,7 @@ MessageServer::MessageServer(CryptoContext& cctx): cctx_{cctx}, port_{3000} {
   }
 
   status() << "Starting message server...\n";
-  sfd_ = socket(AF_INET, SOCK_DGRAM, 0);
+  sfd_ = socket(AF_INET, SOCK_STREAM, 0);
   if (sfd_ == -1) {
     throw ServerStartupError("Server socket creation failed.");
   }
@@ -49,7 +50,7 @@ MessageServer::MessageServer(CryptoContext& cctx): cctx_{cctx}, port_{3000} {
     .sin_addr = INADDR_ANY
   };
 
-  if (bind(sfd_, (sockaddr*) &saddr, sizeof(saddr)) < 0) {
+  if (bind(sfd_, (sockaddr *) &saddr, sizeof(saddr)) < 0) {
     throw ServerStartupError("Server bind() failed.");
   }
 
@@ -66,34 +67,66 @@ MessageServer::~MessageServer() {
 }
 
 void MessageServer::main_loop() {
-  struct sockaddr_in client;
-  socklen_t caddr_sz = 0;
+  if (listen(sfd_, 3) == -1) {
+    error() << "Listen failed.\n";
+    return;
+  }
 
-  const int BUFLEN = 4096;
-  std::vector<char> buf(BUFLEN);
-  std::string sbuf;
-  size_t nrecv = 0;
-  while ((nrecv = recvfrom(sfd_, &buf[0], BUFLEN - 1, 0, (struct sockaddr*) &client, &caddr_sz)) > 0) {
-    sbuf.append(buf.cbegin(), buf.cend());
-    sbuf.resize(std::strlen(buf.data()));
-
-    MShare::Packet packet(sbuf);
-
-    if (packet.from_pubkey == cctx_.get_hex_pubkey()) {
-      try {
-        encrypt_packet(packet);
-      } catch (CryptoPP::InvalidCiphertext &e) {
-        warn() << "Skipping invalid packet.\n";
-        continue;
-      }
+  while (true) {
+    sockaddr_in csaddr;
+    socklen_t caddr_sz = sizeof(csaddr);
+    int csfd = accept(sfd_, (sockaddr *) &csaddr, &caddr_sz);
+    if (csfd == -1) {
+      error() << "Accepting connection from " << inet_ntoa(csaddr.sin_addr) << " failed.\n";
+      continue;
     }
 
-    forward(packet);
-    status() << "Packet ciphertext hash: " << to_hex(sha3_256(packet.msg)) << " " << packet.serialize().size() << '\n';
+    std::thread client_thread([csfd, this] {
+      const int BUFLEN = 4096;
+      char buf[BUFLEN];
+      int buf_start_idx = 0;
+      std::memset(buf, 0, BUFLEN);
 
-//    status() << "New message from " << inet_ntoa(client.sin_addr) << ": " << packet.msg << '\n';
-    std::fill(buf.begin(), buf.end(), 0);
-    sbuf.clear();
+      ssize_t total_nrecv = 0;
+      while (total_nrecv != BUFLEN) {
+        ssize_t nrecv = recv(csfd, &buf[buf_start_idx], BUFLEN, 0);
+        if (nrecv == -1) {
+          error() << "recv failed.\n";
+          close(csfd);
+          return;
+        } else if (nrecv == 0) {
+          status() << "Connection closed by peer.\n";
+          close(csfd);
+        }
+
+        total_nrecv += nrecv;
+        buf_start_idx += nrecv;
+      }
+
+      Packet packet(buf);
+      if (packet.from_pubkey == cctx_.get_hex_pubkey()) {
+        encrypt_packet(packet);
+      } else if (packet.to_pubkey == cctx_.get_hex_pubkey()) {
+        std::string decoded_ciphertext;
+        CryptoPP::StringSource ss(
+          packet.msg,
+          packet.msg.length(),
+          new CryptoPP::HexDecoder(
+            new CryptoPP::StringSink(decoded_ciphertext)
+          )
+        );
+
+        packet.msg = decoded_ciphertext;
+      }
+
+      forward(packet);
+
+      // TODO: Send to GUI.
+
+      close(csfd);
+    });
+
+    client_thread.detach();
   }
 }
 
@@ -130,26 +163,41 @@ void MessageServer::encrypt_packet(Packet &packet) {
 
 void MessageServer::forward(Packet &packet) {
   bool sent_to_at_least_one = false;
+
+  int csfd = socket(AF_INET, SOCK_STREAM, 0);
+  if (csfd == -1) {
+    error() << "forward() socket creation failed.";
+    return;
+  }
+
   sockaddr_in saddr = {
     .sin_family = AF_INET,
     .sin_port = htons(port_)
   };
 
+  std::string sbuf = packet.serialize();
+  const int BUFSIZE = 4096;
+  char buf[BUFSIZE];
+  std::memset(buf, 0, BUFSIZE);
+  std::strcpy(buf, sbuf.c_str());
   for (std::string &peer : known_peers_) {
     if (inet_pton(AF_INET, peer.c_str(), &saddr.sin_addr) != 1) {
       error() << '"' << peer << '"' << " could not be parsed.\n";
       continue;
     }
 
-    // TODO: Do not forward to localhost if it is somehow a known peer.
-    std::string sbuf = packet.serialize();
-    ssize_t ret = sendto(sfd_, sbuf.c_str(), sbuf.size(), 0, (struct sockaddr *) &saddr, sizeof(saddr));
-    if (ret == -1 || ret != sbuf.size()) {
-      error() << peer << ": Full send failed (" << ret << ").\n";
+    if (connect(csfd, (sockaddr *) &saddr, sizeof(saddr)) < 0) {
+      error() << peer << ": Connection failed.\n";
       continue;
     }
 
-    status() << "Send succeeded! " << ret << '\n';
+    // TODO: Do not forward to localhost if it is somehow a known peer.
+    ssize_t ret = send(csfd, buf, BUFSIZE, 0);
+    if (ret == -1 || ret != BUFSIZE) {
+      perror("");
+      error() << peer << ": Full send failed (" << ret << ").\n";
+      continue;
+    }
 
     sent_to_at_least_one = true;
   }
@@ -157,7 +205,7 @@ void MessageServer::forward(Packet &packet) {
   if (sent_to_at_least_one) {
     status() << "Message forwarded.\n";
   } else {
-    warn() << "Please check " << cctx_.get_msdir() / "known_peers.txt" << '\n';
+    warn() << "Please check " << cctx_.get_msdir() / "known_peers.txt (invalid peers/all peers offline)." << '\n';
   }
 }
 

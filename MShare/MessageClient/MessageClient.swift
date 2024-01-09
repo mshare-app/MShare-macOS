@@ -102,20 +102,13 @@ class UDPListener: ObservableObject {
 }
 
 class MessageClient: ObservableObject {
-  private var sfd: Int32
   private(set) public var listener: UDPListener
 
   public enum MessageClientError: Error {
-    case startupError(what: String = "Client startup error.")
     case sendError(what: String = "Client send error.")
   }
 
   init() {
-    sfd = socket(AF_INET, SOCK_DGRAM, 0)
-    if sfd == -1 {
-      print("Will not send messages.")
-    }
-
     listener = UDPListener(on: 3001)
   }
 
@@ -128,7 +121,7 @@ class MessageClient: ObservableObject {
       throw MessageClientError.sendError(what: "Message too long.")
     }
 
-    let errcode = msclient_send_packet(sfd, serialized.cString(using: .utf8))
+    let errcode = msclient_send_packet(serialized.cString(using: .utf8))
     if errcode != 0 {
       throw MessageClientError.sendError(what: "Send failed. Error code: \(errcode)")
     }
