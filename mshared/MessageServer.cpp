@@ -22,7 +22,6 @@ const char* ServerStartupError::what() const noexcept {
 }
 
 MessageServer::MessageServer(CryptoContext& cctx): cctx_{cctx}, port_{3000} {
-  /* TODO: Switch to TCP. */
   if (fs::exists(cctx_.get_msdir())) {
     std::ifstream known_peers_file(cctx_.get_msdir() / "known_peers.txt");
     std::string line;
@@ -119,11 +118,11 @@ void MessageServer::main_loop() {
         // TODO: Catch invalid ciphertext exception.
         packet.msg = cctx_.decrypt(decoded_ciphertext);
         status() << "Message: " << packet.msg << '\n';
+
+        forward_to_client(packet);
       }
 
       forward(packet);
-
-      // TODO: Send to GUI.
 
       close(csfd);
     });
@@ -202,6 +201,7 @@ void MessageServer::forward(Packet &packet) {
     }
 
     sent_to_at_least_one = true;
+    status() << "Sent to: " << peer << '\n';
   }
 
   if (sent_to_at_least_one) {
@@ -210,6 +210,36 @@ void MessageServer::forward(Packet &packet) {
     warn() << "Please check " << cctx_.get_msdir() / "known_peers.txt"
            << " (invalid peers/all peers offline)" << '\n';
   }
+}
+
+void MessageServer::forward_to_client(Packet &packet) {
+  int csfd = socket(AF_INET, SOCK_DGRAM, 0);
+  if (csfd == -1) {
+    error() << "Unable to forward to GUI (socket creation failed).\n";
+    return;
+  }
+
+  sockaddr_in saddr = {
+    .sin_family = AF_INET,
+    .sin_port = htons(3001)
+  };
+
+  if (inet_pton(csfd, "127.0.0.1", &saddr.sin_addr) != 1) {
+    error() << "inet_pton failed.\n";
+    close(csfd);
+    return;
+  }
+
+  std::string serialized = packet.serialize();
+  size_t msg_len = serialized.length();
+  ssize_t nbytes_sent = sendto(csfd, serialized.c_str(), serialized.size(), 0, (sockaddr *) &saddr, sizeof(saddr));
+  if (nbytes_sent == -1 || nbytes_sent != msg_len) {
+    error() << "Full message send to client failed (" << nbytes_sent << ").\n";
+    close(csfd);
+    return;
+  }
+
+  close(csfd);
 }
 
 } // namespace MShare

@@ -34,6 +34,7 @@ private:
   void main_loop();
   void encrypt_packet(Packet &packet);
   void forward(Packet &packet);
+  void forward_to_client(Packet &packet);
 };
 
 } // namespace MShare
